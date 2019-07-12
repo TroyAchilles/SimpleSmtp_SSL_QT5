@@ -13,6 +13,20 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 
 Smtp::Smtp( const QString &user, const QString &pass, const QString &host, int port, int timeout )
 {    
+//     QFile certificateFile(QCoreApplication::applicationDirPath()+"/EquifaxSecureCertificateAuthority.pem"); // pem file in resource
+//     if (certificateFile.open(QIODevice::ReadOnly | QIODevice::Text))
+//     {
+//         QTextStream textStream(&certificateFile);
+//         textStream.setCodec(QTextCodec::codecForName("UTF-8"));
+//         const QString pemString = textStream.readAll();
+
+//         const QList<QSslCertificate> qtCerts = QSslCertificate::fromData(pemString.toUtf8(), QSsl::Pem);
+//         for (const QSslCertificate &qtCert : qtCerts)
+//             QSslSocket::addDefaultCaCertificate(qtCert);
+
+//         certificateFile.close();
+//     }
+
     socket = new QSslSocket(this);
 
     connect(socket, SIGNAL(readyRead()), this, SLOT(readyRead()));
